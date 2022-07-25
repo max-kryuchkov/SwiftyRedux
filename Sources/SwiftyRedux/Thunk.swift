@@ -9,9 +9,9 @@ import Foundation
 
 open class Thunk<S: AppState>: Action {
     
-    let body: (_ dispatch: @escaping DispatchFunction, _ getState: @escaping () -> S?) -> Void
+    public let body: (_ dispatch: @escaping DispatchFunction, _ getState: @escaping () -> S?) -> Void
     
-    init(body: @escaping (_ dispatch: @escaping DispatchFunction, _ getState: @escaping () -> S?) -> Void) {
+    public init(body: @escaping (_ dispatch: @escaping DispatchFunction, _ getState: @escaping () -> S?) -> Void) {
         self.body = body
     }
 }
