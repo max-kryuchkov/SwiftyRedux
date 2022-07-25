@@ -7,30 +7,11 @@
 
 import Foundation
 
-open class Thunk: Action {
+open class Thunk<S: AppState>: Action {
     
-    let body: (_ dispatch: @escaping DispatchFunction, _ getState: @escaping () -> AppState?) -> Void
+    let body: (_ dispatch: @escaping DispatchFunction, _ getState: @escaping () -> S?) -> Void
     
-    init(body: @escaping (_ dispatch: @escaping DispatchFunction, _ getState: @escaping () -> AppState?) -> Void) {
+    init(body: @escaping (_ dispatch: @escaping DispatchFunction, _ getState: @escaping () -> S?) -> Void) {
         self.body = body
     }
-}
-
-public func createThunkMiddleware() -> Middleware {
-    
-    let middleware: Middleware = { dispatch, getState in
-        let fun: (@escaping DispatchFunction) -> DispatchFunction = { next in
-            let actionFunc: DispatchFunction = { action in
-                switch action {
-                case let thunk as Thunk:
-                    thunk.body(dispatch, getState)
-                default:
-                    next(action)
-                }
-            }
-            return actionFunc
-        }
-        return fun
-    }
-    return middleware
 }

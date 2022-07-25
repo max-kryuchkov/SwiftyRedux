@@ -8,3 +8,5 @@
 import Foundation
 
 public protocol StateType {}
+
+public protocol AppState: StateType, Equatable {}

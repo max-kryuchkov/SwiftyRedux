@@ -7,16 +7,16 @@
 
 import Combine
 
-open class Store: ObservableObject {
+open class Store<S: AppState>: ObservableObject {
     
-    @Published private(set) var state: AppState
-    let reducer: Reducer<AppState>
+    @Published private(set) var state: S
+    let reducer: Reducer<S>
     var dispatchFunction: DispatchFunction!
     
-    private var middleware: [Middleware]
+    private var middleware: [Middleware<S>]
     private var isDispatching = AtomicBool(false)
     
-    init(state: AppState = AppState(), reducer: @escaping Reducer<AppState>, middleware: [Middleware] = []) {
+    init(state: S, reducer: @escaping Reducer<S>, middleware: [Middleware<S>] = []) {
         self.state = state
         self.reducer = reducer
         self.middleware = middleware
