@@ -9,7 +9,7 @@ import Combine
 
 open class Store<S: State>: ObservableObject {
     
-    @Published private(set) var state: S
+    @Published public private(set) var state: S
     let reducer: Reducer<S>
     var dispatchFunction: DispatchFunction!
     
