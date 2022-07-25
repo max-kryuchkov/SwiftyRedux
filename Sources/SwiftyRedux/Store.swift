@@ -16,7 +16,7 @@ open class Store<S: AppState>: ObservableObject {
     private var middleware: [Middleware<S>]
     private var isDispatching = AtomicBool(false)
     
-    init(state: S, reducer: @escaping Reducer<S>, middleware: [Middleware<S>] = []) {
+    public init(state: S, reducer: @escaping Reducer<S>, middleware: [Middleware<S>] = []) {
         self.state = state
         self.reducer = reducer
         self.middleware = middleware
