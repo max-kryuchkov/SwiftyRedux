@@ -8,5 +8,3 @@
 import Foundation
 
 public protocol StateType {}
-
-public struct AppState: StateType, Equatable {}
