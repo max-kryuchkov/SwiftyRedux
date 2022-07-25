@@ -8,6 +8,5 @@
 import Foundation
 
 public typealias DispatchFunction = (Action) -> Void
-public typealias Middleware<S> = (@escaping DispatchFunction,
+public typealias Middleware<S: State> = (@escaping DispatchFunction,
                                   @escaping () -> S?) -> (@escaping DispatchFunction) -> DispatchFunction
-
