@@ -11,7 +11,7 @@ public typealias Reducer<ReducerStateType> = (_ action: Action, _ state: Reducer
 
 public protocol AppReducers {
     
-    associatedtype S = AppState
+    associatedtype S = State
     
     static func appReducer(action: Action, state: S?) -> S
 }

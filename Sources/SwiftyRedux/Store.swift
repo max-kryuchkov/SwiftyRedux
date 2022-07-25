@@ -7,7 +7,7 @@
 
 import Combine
 
-open class Store<S: AppState>: ObservableObject {
+open class Store<S: State>: ObservableObject {
     
     @Published private(set) var state: S
     let reducer: Reducer<S>
@@ -31,7 +31,7 @@ open class Store<S: AppState>: ObservableObject {
                 })
     }
     
-    func dispatch(_ action: Action) {
+    public func dispatch(_ action: Action) {
         dispatchFunction(action)
     }
     

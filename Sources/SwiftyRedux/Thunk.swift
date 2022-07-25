@@ -7,7 +7,7 @@
 
 import Foundation
 
-open class Thunk<S: AppState>: Action {
+open class Thunk<S: State>: Action {
     
     public let body: (_ dispatch: @escaping DispatchFunction, _ getState: @escaping () -> S?) -> Void
     
