@@ -6,7 +6,7 @@ SwiftyRedux is a simple Redux implementation for Swift
 
 The app is pretty simple, it will change the background color on button tap
 
-Let's start
+Let's start!
 
 Add SwiftyRedux package in Swift Package Manager and import the library:
 
@@ -14,8 +14,7 @@ Add SwiftyRedux package in Swift Package Manager and import the library:
 import SwiftyRedux
 ```
 
-Add a new State for new module:
-
+Now we have to create a new State, Raducer and Action for some app's logic. So let's add a new State for new module:
 ```
 // SubState.swift
 
@@ -60,7 +59,7 @@ struct SubActions {
 }
 ```
 
-And the third part of Redux - Reducer:
+And the third part is a Reducer:
 
 ```
 // SubReducer.swift
@@ -95,8 +94,7 @@ enum Reducers: AppReducers {
     }
 }
 ```
-
-And here is a ContentView:
+Now we are ready to add all necessary logic to the ContentView:
 ```
 struct ContentView: View {
     @EnvironmentObject private var store: Store<AppState>
@@ -116,9 +114,9 @@ struct ContentView: View {
 }
 ```
 
-1) `@EnvironmentObject private var store: Store<AppState>` - added environment object
-2) `store.dispatch(SettingsActions.NextValue())` - creates action for reducer processing
-3) `store.state.settingsState.value` Using current value to change background color
+1) `@EnvironmentObject private var store: Store<AppState>` - add environment object
+2) `store.dispatch(SettingsActions.NextValue())` - dispatch action with reducer
+3) `store.state.settingsState.value` - use current value to change background color
 
 ### Here is one more small example how to make async tasks like HTTP requests
 Create Thunk instance with async logic like this:
