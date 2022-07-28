@@ -135,7 +135,7 @@ struct NetworkActions {
                 // Start
                 dispatch(DidStart())
                 // API request here...
-                DispatchQueue.global().async {
+                DispatchQueue.main.async {
                     // E.g. some logic...
                     // Finish
                     dispatch(DidFinish(value: "NEW VALUE HERE"))
