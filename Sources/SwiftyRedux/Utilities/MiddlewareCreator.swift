@@ -8,13 +8,16 @@
 import Foundation
 
 public protocol MiddlewareCreator {
-
-    func createMiddleware<S: State>() -> Middleware<S>
+    associatedtype S = State
+    init()
+    func createMiddleware<S>() -> Middleware<S>
 }
 
 public final class ThunkCreator: MiddlewareCreator {
     
-    public func createMiddleware<S>() -> Middleware<S> where S : State {
+    public init() {}
+    
+    public func createMiddleware<S>() -> Middleware<S> {
         let middleware: Middleware<S> = { dispatch, getState in
             let fun: (@escaping DispatchFunction) -> DispatchFunction = { next in
                 let actionFunc: DispatchFunction = { action in
@@ -35,7 +38,9 @@ public final class ThunkCreator: MiddlewareCreator {
 
 public final class LoggingCreator: MiddlewareCreator {
     
-    public func createMiddleware<S>() -> Middleware<S> where S : State {
+    public init() {}
+    
+    public func createMiddleware<S>() -> Middleware<S> {
         let middleware: Middleware<S> = { dispatch, getState in
             let fun: (@escaping DispatchFunction) -> DispatchFunction = { next in
                 let actionFunc: DispatchFunction = { action in
