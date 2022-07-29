@@ -37,7 +37,7 @@ open class Store<S: State>: ObservableObject {
     
     private func defaultDispatch(action: Action) {
         guard isDispatching.value == false else {
-            fatalError("Action has been dispatched while a previous action is action is being processed")
+            fatalError("Action has been dispatched while a previous action is being processed")
         }
 
         isDispatching.set(true)
