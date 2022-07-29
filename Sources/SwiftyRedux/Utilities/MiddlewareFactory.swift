@@ -1,8 +1,8 @@
 //
 //  MiddlewareFactory.swift
-//  SwiftyRedux
+//  
 //
-//  Created by max kryuchkov on 25.07.2022.
+//  Created by max kryuchkov on 29.07.2022.
 //
 
 import Foundation
