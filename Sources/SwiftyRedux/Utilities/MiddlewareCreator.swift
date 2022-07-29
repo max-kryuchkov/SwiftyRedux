@@ -1,15 +1,23 @@
 //
-//  MiddlewareFactory.swift
-//  
+//  MiddlewareCreator.swift
+//  SwiftyRedux
 //
 //  Created by max kryuchkov on 25.07.2022.
 //
 
 import Foundation
 
-public struct MiddlewareFactory {
+public protocol MiddlewareCreator {
+    associatedtype S = State
+    init()
+    func createMiddleware<S>() -> Middleware<S>
+}
+
+public final class ThunkCreator: MiddlewareCreator {
     
-    public static func createThunkMiddleware<S: State>() -> Middleware<S> {
+    public init() {}
+    
+    public func createMiddleware<S>() -> Middleware<S> {
         let middleware: Middleware<S> = { dispatch, getState in
             let fun: (@escaping DispatchFunction) -> DispatchFunction = { next in
                 let actionFunc: DispatchFunction = { action in
@@ -26,8 +34,13 @@ public struct MiddlewareFactory {
         }
         return middleware
     }
+}
+
+public final class LoggingCreator: MiddlewareCreator {
     
-    public static func createLoginMiddleware<S: State>() -> Middleware<S> {
+    public init() {}
+    
+    public func createMiddleware<S>() -> Middleware<S> {
         let middleware: Middleware<S> = { dispatch, getState in
             let fun: (@escaping DispatchFunction) -> DispatchFunction = { next in
                 let actionFunc: DispatchFunction = { action in
