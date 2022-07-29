@@ -14,7 +14,7 @@ Add SwiftyRedux package in Swift Package Manager and import the library:
 import SwiftyRedux
 ```
 
-Now we have to create a new State, Raducer and an Action for some app's logic. So let's add a new State for new module:
+Now we have to create a new State, Raducer and Action for some app's logic. So let's add a new State for new module:
 ```
 // SubState.swift
 
@@ -30,7 +30,7 @@ struct SubState: StateType, Equatable {
     }
 }
 ```
-> Note: It named "Sub" just for the demo, you should choose a good and intuitive name for such sub states.
+> Note: It named "Sub" just for demo, you should choose a good and intuitive name for such sub states.
 
 Now we are ready to create a main app's state:
 
@@ -59,7 +59,7 @@ struct SubActions {
 }
 ```
 
-The third part is a Reducer:
+And the third part is a Reducer:
 
 ```
 // SubReducer.swift
@@ -81,7 +81,7 @@ extension Reducers {
 }
 ```
 
-And also we need Reducers enum for combining all sub states and an AppState:
+And also we need Reducers enum for combining all sub states and app state:
 
 ```
 // Reducers.swift
@@ -132,8 +132,6 @@ struct NetworkActions {
                 guard let _ = getState() else {
                     return
                 }
-                // Start
-                dispatch(DidStart())
                 // API request here...
                 DispatchQueue.main.async {
                     // E.g. some logic...
